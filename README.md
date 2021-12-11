@@ -1,6 +1,6 @@
 # Dicas para Iniciar um Projeto Angular@13
 
-Existem muitas configurações adicionais interessantes após o ng new meu-projeto, como por exemplo adicionar suporte a ESLint, Prettier, pre-commit hooks, etc. Vou listar aqui as principais configurações que recomendo em todo projeto novo Angular.
+Existem muitas configurações adicionais interessantes após o `ng new meu-projeto`, como por exemplo adicionar suporte a ESLint, Prettier, pre-commit hooks, etc. Vou listar aqui as principais configurações que recomendo em todo projeto novo Angular.
 
 ## ESLint
 
