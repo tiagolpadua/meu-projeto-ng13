@@ -67,20 +67,6 @@ Please only submit bug reports when using the officially supported version.
 
 Para corrigi-la, você precisará atualizar a versão do `@typescript-eslint/eslint-plugin` e do `@typescript-eslint/parser` para uma versão mais recente como por exemplo `5.6.0` no seu arquivo `package.json`.
 
-Instale a extensão compatível com o ESLint no seu editor de código, no meu caso utilizo o VSCode e gosto também de incluir no arquivo de recomendações de extensões do VSCode a extensão do ESLint, assim, se um colega de trabalho baixar o projeto e utilizar o VSCode, ele receberá a recomendação de instalação do plugin:
-
-`.vscode/extensions.json`
-
-```json
-{
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": [
-    "angular.ng-template",
-    "dbaeumer.vscode-eslint"
-  ]
-}
-```
-
 ## Prettier
 
 O ESLint é um bom "linter" de código, irá tentar adequar o seu código às boas práticas e regras que ele tem disponíveis. Porém, para a formatação "visual" do código, o Prettier se sai melhor. Para nossa sorte é possível integrar o ESLint e o Prettier através de plugins. Para isso, primeiro você deve desativar algumas verificações do ESLint que podem entrar em conflito com o Prettier, isso é feito pelo pacote `eslint-config-prettier`:
@@ -92,7 +78,7 @@ npm install - save-dev eslint-config-prettier
 Inclua mais a extensão prettier no `.eslintrc.json`:
 
 ```json
-{ 
+{
   ...
   "extends": [
     "plugin:@angular-eslint/template/recommended",
@@ -126,23 +112,49 @@ Devemos também criar um arquivo `.prettierrc` na raiz do projeto com algumas c
 
 ```yaml
 overrides:
-  - files: '*.html'
+  - files: "*.html"
     options:
-      parser: 'html'
-  - files: '*.component.html'
+      parser: "html"
+  - files: "*.component.html"
     options:
-      parser: 'angular'
+      parser: "angular"
 ```
 
 Pronto, agora se você executar o comando `npm run lint` serão exibidos alguns erros, basta executar `npm run lint:fix` para que seu projeto fique ajustado às novas configurações.
 
-## Formatando a cada salvamento no VSCode
+## Configurando o VSCode
 
-Pra você que como eu não gosta de ter trabalho formatando código, agora você pode utilizar um recurso do VSCode que irá formatar automaticamente o projeto de acordo com as regras que foram estabelecidas cada vez que você salvar um arquivo. Vá em `File -> Preferences -> Settings`, selecione o seu projeto, busque na caixa a opção "Format On Save" e deixe o checkbox marcado. Deve ser criado um arquivo `.vscode/settings.json` com o seguinte conteúdo:
+Instale o plugin do ESLint e do Prettier no seu editor de código, no meu caso utilizo o VSCode e gosto também de incluir no arquivo de recomendações de extensões do VSCode, assim, se um colega de trabalho baixar o projeto e utilizar o VSCode, ele receberá a recomendação de instalação dos plugins:
+
+`.vscode/extensions.json`
 
 ```json
 {
-    "editor.formatOnSave": true
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
+```
+
+Configure o VSCode para utilizar por padrão o Prettier para formatar os arquivos do seu projeto assim como para formatar o código a cada salvamento:
+
+`.vscode/settings.json`
+
+```json
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
 }
 ```
 
